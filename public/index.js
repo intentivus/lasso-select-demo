@@ -2,7 +2,7 @@ const mapElement = document.querySelector("#map");
 const toggleLasso = document.querySelector("#toggleLasso");
 const contain = document.querySelector("#contain");
 const intersect = document.querySelector("#intersect");
-const lassoEnabled = document.querySelector("#lassoEnabled");
+// const lassoEnabled = document.querySelector("#lassoEnabled");
 const lassoResult = document.querySelector("#lassoResult");
 
 // center the map on the center of the United States
@@ -64,7 +64,7 @@ map.on("mousedown", () => {
 });
 map.on("lasso.finished", (event) => {
   setSelectedLayers(event.layers);
-  console.log("lasso finished event", event);
+  // console.log("lasso finished event", event);
 
   // send lasso coordinates to server
   const lassoCoordinates = event.latLngs.map((latLng) => [
@@ -72,7 +72,7 @@ map.on("lasso.finished", (event) => {
     latLng.lat,
   ]);
 
-  console.log("payload", JSON.stringify(lassoCoordinates));
+  // console.log("payload", JSON.stringify(lassoCoordinates));
 
   fetch("/api/v1/lasso", {
     method: "POST",
@@ -111,23 +111,23 @@ map.on("lasso.finished", (event) => {
     });
 });
 map.on("lasso.enabled", () => {
-  lassoEnabled.innerHTML = "Enabled";
+  // lassoEnabled.innerHTML = "Lasso Enabled";
   resetSelectedState();
 });
 map.on("lasso.disabled", () => {
-  lassoEnabled.innerHTML = "Disabled";
+  // lassoEnabled.innerHTML = "Lasso Disabled";
 });
 
-toggleLasso.addEventListener("click", () => {
-  if (lassoControl.enabled()) {
-    lassoControl.disable();
-  } else {
-    lassoControl.enable();
-  }
-});
-contain.addEventListener("change", () => {
-  lassoControl.setOptions({ intersect: intersect.checked });
-});
-intersect.addEventListener("change", () => {
-  lassoControl.setOptions({ intersect: intersect.checked });
-});
+// toggleLasso.addEventListener("click", () => {
+//   if (lassoControl.enabled()) {
+//     lassoControl.disable();
+//   } else {
+//     lassoControl.enable();
+//   }
+// });
+// contain.addEventListener("change", () => {
+//   lassoControl.setOptions({ intersect: intersect.checked });
+// });
+// intersect.addEventListener("change", () => {
+//   lassoControl.setOptions({ intersect: intersect.checked });
+// });
